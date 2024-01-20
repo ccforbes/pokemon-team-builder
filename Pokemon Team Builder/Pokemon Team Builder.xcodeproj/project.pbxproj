@@ -10,7 +10,6 @@
 		D356FB4A2B5B5FAC003ACA2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356FB492B5B5FAC003ACA2D /* AppDelegate.swift */; };
 		D356FB4C2B5B5FAC003ACA2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356FB4B2B5B5FAC003ACA2D /* SceneDelegate.swift */; };
 		D356FB4E2B5B5FAC003ACA2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356FB4D2B5B5FAC003ACA2D /* ViewController.swift */; };
-		D356FB512B5B5FAC003ACA2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D356FB4F2B5B5FAC003ACA2D /* Main.storyboard */; };
 		D356FB542B5B5FAC003ACA2D /* Pokemon_Team_Builder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D356FB522B5B5FAC003ACA2D /* Pokemon_Team_Builder.xcdatamodeld */; };
 		D356FB562B5B5FAD003ACA2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D356FB552B5B5FAD003ACA2D /* Assets.xcassets */; };
 		D356FB592B5B5FAD003ACA2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D356FB572B5B5FAD003ACA2D /* LaunchScreen.storyboard */; };
@@ -21,7 +20,6 @@
 		D356FB492B5B5FAC003ACA2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D356FB4B2B5B5FAC003ACA2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D356FB4D2B5B5FAC003ACA2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D356FB502B5B5FAC003ACA2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D356FB532B5B5FAC003ACA2D /* Pokemon_Team_Builder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pokemon_Team_Builder.xcdatamodel; sourceTree = "<group>"; };
 		D356FB552B5B5FAD003ACA2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D356FB582B5B5FAD003ACA2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 				D356FB492B5B5FAC003ACA2D /* AppDelegate.swift */,
 				D356FB4B2B5B5FAC003ACA2D /* SceneDelegate.swift */,
 				D356FB4D2B5B5FAC003ACA2D /* ViewController.swift */,
-				D356FB4F2B5B5FAC003ACA2D /* Main.storyboard */,
 				D356FB552B5B5FAD003ACA2D /* Assets.xcassets */,
 				D356FB572B5B5FAD003ACA2D /* LaunchScreen.storyboard */,
 				D356FB5A2B5B5FAD003ACA2D /* Info.plist */,
@@ -130,7 +127,6 @@
 			files = (
 				D356FB592B5B5FAD003ACA2D /* LaunchScreen.storyboard in Resources */,
 				D356FB562B5B5FAD003ACA2D /* Assets.xcassets in Resources */,
-				D356FB512B5B5FAC003ACA2D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,14 +147,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D356FB4F2B5B5FAC003ACA2D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D356FB502B5B5FAC003ACA2D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D356FB572B5B5FAD003ACA2D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -301,7 +289,6 @@
 				INFOPLIST_FILE = "Pokemon Team Builder/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -329,7 +316,6 @@
 				INFOPLIST_FILE = "Pokemon Team Builder/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
