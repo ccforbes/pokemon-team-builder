@@ -16,6 +16,10 @@
 		D356FB622B5B645A003ACA2D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356FB612B5B645A003ACA2D /* HomeViewModel.swift */; };
 		D356FB652B5B6814003ACA2D /* Nunito Sans in Resources */ = {isa = PBXBuildFile; fileRef = D356FB642B5B6814003ACA2D /* Nunito Sans */; };
 		D36C855E2B5E448900924BE8 /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36C855D2B5E448900924BE8 /* TeamsCollectionViewCell.swift */; };
+		D36C85602B64982300924BE8 /* PokemonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36C855F2B64982300924BE8 /* PokemonType.swift */; };
+		D36C85632B64A2AA00924BE8 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36C85622B64A2AA00924BE8 /* Move.swift */; };
+		D36C85652B64A59000924BE8 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36C85642B64A59000924BE8 /* Pokemon.swift */; };
+		D36C85672B64A6AF00924BE8 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36C85662B64A6AF00924BE8 /* Team.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		D356FB612B5B645A003ACA2D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D356FB642B5B6814003ACA2D /* Nunito Sans */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Nunito Sans"; sourceTree = "<group>"; };
 		D36C855D2B5E448900924BE8 /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
+		D36C855F2B64982300924BE8 /* PokemonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonType.swift; sourceTree = "<group>"; };
+		D36C85622B64A2AA00924BE8 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
+		D36C85642B64A59000924BE8 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		D36C85662B64A6AF00924BE8 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,7 @@
 				D356FB632B5B645F003ACA2D /* ViewModels */,
 				D356FB602B5B63F2003ACA2D /* Controllers */,
 				D356FB552B5B5FAD003ACA2D /* Assets.xcassets */,
+				D36C85612B64A14300924BE8 /* Models */,
 				D356FB572B5B5FAD003ACA2D /* LaunchScreen.storyboard */,
 				D356FB5A2B5B5FAD003ACA2D /* Info.plist */,
 				D356FB522B5B5FAC003ACA2D /* Pokemon_Team_Builder.xcdatamodeld */,
@@ -98,6 +107,17 @@
 				D36C855D2B5E448900924BE8 /* TeamsCollectionViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D36C85612B64A14300924BE8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D36C855F2B64982300924BE8 /* PokemonType.swift */,
+				D36C85622B64A2AA00924BE8 /* Move.swift */,
+				D36C85642B64A59000924BE8 /* Pokemon.swift */,
+				D36C85662B64A6AF00924BE8 /* Team.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,8 +195,12 @@
 				D356FB622B5B645A003ACA2D /* HomeViewModel.swift in Sources */,
 				D356FB4A2B5B5FAC003ACA2D /* AppDelegate.swift in Sources */,
 				D36C855E2B5E448900924BE8 /* TeamsCollectionViewCell.swift in Sources */,
+				D36C85632B64A2AA00924BE8 /* Move.swift in Sources */,
+				D36C85652B64A59000924BE8 /* Pokemon.swift in Sources */,
 				D356FB542B5B5FAC003ACA2D /* Pokemon_Team_Builder.xcdatamodeld in Sources */,
 				D356FB4C2B5B5FAC003ACA2D /* SceneDelegate.swift in Sources */,
+				D36C85672B64A6AF00924BE8 /* Team.swift in Sources */,
+				D36C85602B64982300924BE8 /* PokemonType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
