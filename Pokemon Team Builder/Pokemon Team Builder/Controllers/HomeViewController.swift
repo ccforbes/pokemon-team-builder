@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
     lazy var teamsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: view.frame.size.width / 1.15, height: view.frame.size.height / 6.3)
+        layout.itemSize = CGSize(width: view.frame.size.width / 1.15, height: view.frame.size.height / 7)
         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)

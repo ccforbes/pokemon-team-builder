@@ -23,6 +23,37 @@ class TeamsCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    lazy var gameVersionLogoImageView: UIImageView = {
+        let image = UIImage(named: "Legends Arceus Logo")
+        let resizedImage = TempUtils.resizeImage(image: image!, targetSize: CGSizeMake(80, 80))
+        let imageView = UIImageView(image: resizedImage!)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        return imageView
+    }()
+    
+    let teamNameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Legends Arceus Team"
+        label.textColor = .white
+        return label
+    }()
+    
+    lazy var pokemonTeamCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: contentView.frame.size.width / 13, height: contentView.frame.size.height / 5)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = UIColor(named: "Background Color")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.dataSource = self
+        collectionView.register(PokemonTeamCollectionViewCell.self, forCellWithReuseIdentifier: PokemonTeamCollectionViewCell.id)
+        return collectionView
+    }()
+    
     // MARK: - Initializers and Overriden Stubs
 
     override func awakeFromNib() {
@@ -39,10 +70,16 @@ class TeamsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup UIs
+    // MARK: - Setup UI Components
     
     private func setupUI() {
-        contentView.backgroundColor = UIColor(named: "Background Color")
+        setupContainerView()
+        setupGameVersionLogoImageView()
+        setupTeamNameLabel()
+        setupPokemonTeamCollectionView()
+    }
+    
+    private func setupContainerView() {
         contentView.addSubview(containerView)
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -51,4 +88,47 @@ class TeamsCollectionViewCell: UICollectionViewCell {
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
+    
+    private func setupGameVersionLogoImageView() {
+        containerView.addSubview(gameVersionLogoImageView)
+        NSLayoutConstraint.activate([
+            gameVersionLogoImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 30),
+            gameVersionLogoImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+        ])
+    }
+    
+    private func setupTeamNameLabel() {
+        containerView.addSubview(teamNameLabel)
+        NSLayoutConstraint.activate([
+            teamNameLabel.topAnchor.constraint(equalTo: gameVersionLogoImageView.topAnchor),
+            teamNameLabel.leadingAnchor.constraint(equalTo: gameVersionLogoImageView.trailingAnchor, constant: 10),
+        ])
+    }
+    
+    private func setupPokemonTeamCollectionView() {
+        containerView.addSubview(pokemonTeamCollectionView)
+        NSLayoutConstraint.activate([
+            pokemonTeamCollectionView.topAnchor.constraint(equalTo: teamNameLabel.bottomAnchor, constant: 4),
+            pokemonTeamCollectionView.leadingAnchor.constraint(equalTo: teamNameLabel.leadingAnchor),
+            pokemonTeamCollectionView.bottomAnchor.constraint(equalTo: gameVersionLogoImageView.bottomAnchor),
+            pokemonTeamCollectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
+        ])
+    }
+
+}
+
+extension TeamsCollectionViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonTeamCollectionViewCell.id, for: indexPath)
+                as? PokemonTeamCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        return cell
+    }
+    
+    
 }
