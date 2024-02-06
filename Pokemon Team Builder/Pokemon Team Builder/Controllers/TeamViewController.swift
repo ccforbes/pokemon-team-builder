@@ -11,10 +11,59 @@ class TeamViewController: UIViewController {
     
     // MARK: - Properties
     
+    let teamInfoLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Information"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }()
+    
+    let teamInfoWrapperView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let teamNameTextInput: UITextField = {
+        let textInput = UITextField()
+        textInput.translatesAutoresizingMaskIntoConstraints = false
+        textInput.textColor = .white
+        textInput.borderStyle = .roundedRect
+        textInput.backgroundColor = .darkGray
+        textInput.attributedPlaceholder = NSMutableAttributedString(
+            string: "Name",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.lightGray
+            ]
+        )
+        return textInput
+    }()
+    
+    lazy var teamDescriptionTextView: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.backgroundColor = .darkGray
+        textView.isEditable = true
+        textView.textColor = .white
+        textView.delegate = self
+        textView.font = UIFont.systemFont(ofSize: 16)
+        return textView
+    }()
+    
+    lazy var gameVersionLogoImageView: UIImageView = {
+        let image = UIImage(named: "Legends Arceus Logo")
+        let resizedImage = TempUtils.resizeImage(image: image!, targetSize: CGSizeMake(150, 150))
+        let imageView = UIImageView(image: resizedImage!)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     let teamMembersLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Team Members"
+        label.text = "Members"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         return label
@@ -23,7 +72,7 @@ class TeamViewController: UIViewController {
     lazy var teamMembersCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: view.frame.width / 2.3, height: view.frame.height / 9)
+        layout.itemSize = CGSize(width: view.frame.width / 2.3, height: view.frame.height / 12)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor(named: "Background Color")
@@ -68,15 +117,70 @@ class TeamViewController: UIViewController {
     // MARK: - UI Setup
     
     private func setupUI() {
+        setupTeamInfoLabel()
+        setupTeamInfoEditSection()
+        setupGameVersionLogoImageView()
+        
         setupTeamMembersLabel()
         setupTeamMembersCollectionView()
+    }
+    
+    private func setupTeamInfoLabel() {
+        view.addSubview(teamInfoLabel)
+        NSLayoutConstraint.activate([
+            teamInfoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            teamInfoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18)
+        ])
+    }
+    
+    private func setupTeamInfoEditSection() {
+        setupTeamInfoWrapperView()
+        setupTeamNameTextField()
+        setupTeamDescriptionTextView()
+    }
+    
+    private func setupTeamInfoWrapperView() {
+        view.addSubview(teamInfoWrapperView)
+        NSLayoutConstraint.activate([
+            teamInfoWrapperView.topAnchor.constraint(equalTo: teamInfoLabel.bottomAnchor, constant: 10),
+            teamInfoWrapperView.leadingAnchor.constraint(equalTo: teamInfoLabel.leadingAnchor),
+            teamInfoWrapperView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.width / 2.2)),
+            teamInfoWrapperView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(view.frame.height / 1.8))
+        ])
+    }
+    
+    private func setupTeamNameTextField() {
+        teamInfoWrapperView.addSubview(teamNameTextInput)
+        NSLayoutConstraint.activate([
+            teamNameTextInput.topAnchor.constraint(equalTo: teamInfoWrapperView.topAnchor),
+            teamNameTextInput.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
+            teamNameTextInput.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
+        ])
+    }
+    
+    private func setupTeamDescriptionTextView() {
+        teamInfoWrapperView.addSubview(teamDescriptionTextView)
+        NSLayoutConstraint.activate([
+            teamDescriptionTextView.topAnchor.constraint(equalTo: teamNameTextInput.bottomAnchor, constant: 5),
+            teamDescriptionTextView.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
+            teamDescriptionTextView.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
+            teamDescriptionTextView.bottomAnchor.constraint(equalTo: teamInfoWrapperView.bottomAnchor),
+        ])
+    }
+    
+    private func setupGameVersionLogoImageView() {
+        view.addSubview(gameVersionLogoImageView)
+        NSLayoutConstraint.activate([
+            gameVersionLogoImageView.leadingAnchor.constraint(equalTo: teamNameTextInput.trailingAnchor, constant: 10),
+            gameVersionLogoImageView.centerYAnchor.constraint(equalTo: teamInfoWrapperView.centerYAnchor),
+        ])
     }
     
     private func setupTeamMembersLabel() {
         view.addSubview(teamMembersLabel)
         NSLayoutConstraint.activate([
-            teamMembersLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            teamMembersLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18)
+            teamMembersLabel.topAnchor.constraint(equalTo: teamDescriptionTextView.bottomAnchor, constant: 10),
+            teamMembersLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
         ])
     }
     
@@ -85,8 +189,16 @@ class TeamViewController: UIViewController {
         NSLayoutConstraint.activate([
             teamMembersCollectionView.topAnchor.constraint(equalTo: teamMembersLabel.bottomAnchor, constant: 10),
             teamMembersCollectionView.leadingAnchor.constraint(equalTo: teamMembersLabel.leadingAnchor),
-            teamMembersCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(view.frame.height / 2.4)),
-            teamMembersCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18)
+            teamMembersCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
+            teamMembersCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(view.frame.height / 12)),
+        ])
+    }
+    
+    private func setupTeamInformationLabel() {
+        view.addSubview(teamInfoLabel)
+        NSLayoutConstraint.activate([
+            teamInfoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            teamInfoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18)
         ])
     }
 
@@ -94,7 +206,7 @@ class TeamViewController: UIViewController {
 
 // MARK: - DataSource Extension
 
-extension TeamViewController : UICollectionViewDataSource {
+extension TeamViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         6
     }
@@ -108,4 +220,20 @@ extension TeamViewController : UICollectionViewDataSource {
     }
     
     
+}
+
+extension TeamViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Description"
+            textView.textColor = UIColor.lightGray
+        }
+    }
 }

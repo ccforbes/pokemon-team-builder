@@ -34,7 +34,7 @@ class TeamMembersCollectionViewCell: UICollectionViewCell {
     
     lazy var teamMemberImageView: UIImageView = {
         let image = UIImage(named: "Pikachu")
-        let resizedImage = TempUtils.resizeImage(image: image!, targetSize: CGSizeMake(75, 75))
+        let resizedImage = TempUtils.resizeImage(image: image!, targetSize: CGSizeMake(50, 50))
         let imageView = UIImageView(image: resizedImage!)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -73,7 +73,7 @@ class TeamMembersCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(teamMemberImageView)
         NSLayoutConstraint.activate([
             teamMemberImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
-            teamMemberImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10)
+            teamMemberImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20)
         ])
     }
     
