@@ -128,7 +128,7 @@ class TeamViewController: UIViewController {
     private func setupTeamInfoLabel() {
         view.addSubview(teamInfoLabel)
         NSLayoutConstraint.activate([
-            teamInfoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            teamInfoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             teamInfoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18)
         ])
     }
