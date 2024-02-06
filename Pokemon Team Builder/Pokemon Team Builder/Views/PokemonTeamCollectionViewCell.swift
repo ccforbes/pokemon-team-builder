@@ -14,7 +14,6 @@ class PokemonTeamCollectionViewCell: UICollectionViewCell {
     
     lazy var teamMemberImageView: UIImageView = {
         let image = UIImage(named: "Pikachu")
-        let resizedImage = TempUtils.resizeImage(image: image!, targetSize: CGSizeMake(50, 50))
         let imageView = UIImageView(image: image!)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -29,6 +28,8 @@ class PokemonTeamCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - UI Setup
     
     private func setupUI() {
         contentView.backgroundColor = UIColor(named: "Background Color")

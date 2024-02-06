@@ -41,6 +41,7 @@ class HomeViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: "Background Color")
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(TeamsCollectionViewCell.self, forCellWithReuseIdentifier: TeamsCollectionViewCell.id)
         return collectionView
     }()
@@ -51,6 +52,16 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = viewModel.backgroundColor
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     // MARK: - Initializers
@@ -113,5 +124,12 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     
+}
+
+
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(TeamViewController(), animated: true)
+    }
 }
 

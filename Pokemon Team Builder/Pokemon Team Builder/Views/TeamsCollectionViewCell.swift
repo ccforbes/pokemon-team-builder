@@ -40,7 +40,7 @@ class TeamsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var pokemonTeamCollectionView: UICollectionView = {
+    lazy var teamPreviewCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: contentView.frame.size.width / 13, height: contentView.frame.size.height / 5)
@@ -106,16 +106,18 @@ class TeamsCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupPokemonTeamCollectionView() {
-        containerView.addSubview(pokemonTeamCollectionView)
+        containerView.addSubview(teamPreviewCollectionView)
         NSLayoutConstraint.activate([
-            pokemonTeamCollectionView.topAnchor.constraint(equalTo: teamNameLabel.bottomAnchor, constant: 4),
-            pokemonTeamCollectionView.leadingAnchor.constraint(equalTo: teamNameLabel.leadingAnchor),
-            pokemonTeamCollectionView.bottomAnchor.constraint(equalTo: gameVersionLogoImageView.bottomAnchor),
-            pokemonTeamCollectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
+            teamPreviewCollectionView.topAnchor.constraint(equalTo: teamNameLabel.bottomAnchor, constant: 4),
+            teamPreviewCollectionView.leadingAnchor.constraint(equalTo: teamNameLabel.leadingAnchor),
+            teamPreviewCollectionView.bottomAnchor.constraint(equalTo: gameVersionLogoImageView.bottomAnchor),
+            teamPreviewCollectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
         ])
     }
 
 }
+
+// MARK: - DataSource Extension
 
 extension TeamsCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
