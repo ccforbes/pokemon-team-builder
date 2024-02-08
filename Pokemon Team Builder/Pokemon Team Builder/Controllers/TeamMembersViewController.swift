@@ -28,6 +28,7 @@ class TeamMembersViewController: UIViewController {
         collectionView.backgroundColor = UIColor(named: "Background Color")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(TeamMembersCollectionViewCell.self, forCellWithReuseIdentifier: TeamMembersCollectionViewCell.id)
         return collectionView
     }()
@@ -103,4 +104,12 @@ extension TeamMembersViewController: UICollectionViewDataSource {
     }
     
     
+}
+
+// MARK: - Delegate Extension
+
+extension TeamMembersViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(PokemonViewController(), animated: true)
+    }
 }
