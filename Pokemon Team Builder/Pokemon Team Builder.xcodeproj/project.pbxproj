@@ -24,6 +24,8 @@
 		D36C856B2B68DA4500924BE8 /* TempUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36C856A2B68DA4500924BE8 /* TempUtils.swift */; };
 		D36C856D2B6EA5F800924BE8 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36C856C2B6EA5F800924BE8 /* TeamViewController.swift */; };
 		D36C85712B70B93800924BE8 /* TeamMembersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36C85702B70B93800924BE8 /* TeamMembersCollectionViewCell.swift */; };
+		D3AC88E12B7470DE0008686F /* TeamInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC88E02B7470DE0008686F /* TeamInfoViewController.swift */; };
+		D3AC88E32B7487550008686F /* TeamMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC88E22B7487550008686F /* TeamMembersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		D36C856A2B68DA4500924BE8 /* TempUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempUtils.swift; sourceTree = "<group>"; };
 		D36C856C2B6EA5F800924BE8 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		D36C85702B70B93800924BE8 /* TeamMembersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMembersCollectionViewCell.swift; sourceTree = "<group>"; };
+		D3AC88E02B7470DE0008686F /* TeamInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoViewController.swift; sourceTree = "<group>"; };
+		D3AC88E22B7487550008686F /* TeamMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMembersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 			children = (
 				D356FB4D2B5B5FAC003ACA2D /* HomeViewController.swift */,
 				D36C856C2B6EA5F800924BE8 /* TeamViewController.swift */,
+				D3AC88E02B7470DE0008686F /* TeamInfoViewController.swift */,
+				D3AC88E22B7487550008686F /* TeamMembersViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -214,6 +220,8 @@
 				D36C85632B64A2AA00924BE8 /* Move.swift in Sources */,
 				D36C85652B64A59000924BE8 /* Pokemon.swift in Sources */,
 				D356FB542B5B5FAC003ACA2D /* Pokemon_Team_Builder.xcdatamodeld in Sources */,
+				D3AC88E32B7487550008686F /* TeamMembersViewController.swift in Sources */,
+				D3AC88E12B7470DE0008686F /* TeamInfoViewController.swift in Sources */,
 				D356FB4C2B5B5FAC003ACA2D /* SceneDelegate.swift in Sources */,
 				D36C85672B64A6AF00924BE8 /* Team.swift in Sources */,
 				D36C85602B64982300924BE8 /* PokemonType.swift in Sources */,

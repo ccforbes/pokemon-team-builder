@@ -11,53 +11,16 @@ class TeamViewController: UIViewController {
     
     // MARK: - Properties
     
-    let teamInfoLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Information"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        return label
-    }()
-    
-    let teamInfoWrapperView: UIView = {
+    private let teamInfoContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    let teamNameTextInput: UITextField = {
-        let textInput = UITextField()
-        textInput.translatesAutoresizingMaskIntoConstraints = false
-        textInput.textColor = .white
-        textInput.borderStyle = .roundedRect
-        textInput.backgroundColor = .darkGray
-        textInput.attributedPlaceholder = NSMutableAttributedString(
-            string: "Name",
-            attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.lightGray
-            ]
-        )
-        return textInput
-    }()
-    
-    lazy var teamDescriptionTextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.backgroundColor = .darkGray
-        textView.isEditable = true
-        textView.textColor = .white
-        textView.delegate = self
-        textView.font = UIFont.systemFont(ofSize: 16)
-        return textView
-    }()
-    
-    lazy var gameVersionLogoImageView: UIImageView = {
-        let image = UIImage(named: "Legends Arceus Logo")
-        let resizedImage = TempUtils.resizeImage(image: image!, targetSize: CGSizeMake(150, 150))
-        let imageView = UIImageView(image: resizedImage!)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    private let teamMembersContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     let teamMembersLabel: UILabel = {
@@ -117,89 +80,40 @@ class TeamViewController: UIViewController {
     // MARK: - UI Setup
     
     private func setupUI() {
-        setupTeamInfoLabel()
-        setupTeamInfoEditSection()
-        setupGameVersionLogoImageView()
+        setupTeamInfoSection()
+        setupTeamMemberSection()
+    }
+    
+    private func setupTeamInfoSection() {
+        view.addSubview(teamInfoContainerView)
+        NSLayoutConstraint.activate([
+            teamInfoContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            teamInfoContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            teamInfoContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            teamInfoContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25)
+        ])
         
-        setupTeamMembersLabel()
-        setupTeamMembersCollectionView()
+        let teamInfoViewController = TeamInfoViewController()
+        addChild(teamInfoViewController)
+        teamInfoContainerView.addSubview(teamInfoViewController.view)
+        teamInfoViewController.didMove(toParent: self)
+        teamInfoViewController.view.frame = teamInfoContainerView.frame
     }
     
-    private func setupTeamInfoLabel() {
-        view.addSubview(teamInfoLabel)
+    private func setupTeamMemberSection() {
+        view.addSubview(teamMembersContainerView)
         NSLayoutConstraint.activate([
-            teamInfoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            teamInfoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18)
+            teamMembersContainerView.topAnchor.constraint(equalTo: teamInfoContainerView.bottomAnchor, constant: 15),
+            teamMembersContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            teamMembersContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            teamMembersContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.33)
         ])
-    }
-    
-    private func setupTeamInfoEditSection() {
-        setupTeamInfoWrapperView()
-        setupTeamNameTextField()
-        setupTeamDescriptionTextView()
-    }
-    
-    private func setupTeamInfoWrapperView() {
-        view.addSubview(teamInfoWrapperView)
-        NSLayoutConstraint.activate([
-            teamInfoWrapperView.topAnchor.constraint(equalTo: teamInfoLabel.bottomAnchor, constant: 10),
-            teamInfoWrapperView.leadingAnchor.constraint(equalTo: teamInfoLabel.leadingAnchor),
-            teamInfoWrapperView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.width / 2.2)),
-            teamInfoWrapperView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(view.frame.height / 1.8))
-        ])
-    }
-    
-    private func setupTeamNameTextField() {
-        teamInfoWrapperView.addSubview(teamNameTextInput)
-        NSLayoutConstraint.activate([
-            teamNameTextInput.topAnchor.constraint(equalTo: teamInfoWrapperView.topAnchor),
-            teamNameTextInput.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
-            teamNameTextInput.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
-        ])
-    }
-    
-    private func setupTeamDescriptionTextView() {
-        teamInfoWrapperView.addSubview(teamDescriptionTextView)
-        NSLayoutConstraint.activate([
-            teamDescriptionTextView.topAnchor.constraint(equalTo: teamNameTextInput.bottomAnchor, constant: 5),
-            teamDescriptionTextView.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
-            teamDescriptionTextView.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
-            teamDescriptionTextView.bottomAnchor.constraint(equalTo: teamInfoWrapperView.bottomAnchor),
-        ])
-    }
-    
-    private func setupGameVersionLogoImageView() {
-        view.addSubview(gameVersionLogoImageView)
-        NSLayoutConstraint.activate([
-            gameVersionLogoImageView.leadingAnchor.constraint(equalTo: teamNameTextInput.trailingAnchor, constant: 10),
-            gameVersionLogoImageView.centerYAnchor.constraint(equalTo: teamInfoWrapperView.centerYAnchor),
-        ])
-    }
-    
-    private func setupTeamMembersLabel() {
-        view.addSubview(teamMembersLabel)
-        NSLayoutConstraint.activate([
-            teamMembersLabel.topAnchor.constraint(equalTo: teamDescriptionTextView.bottomAnchor, constant: 10),
-            teamMembersLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
-        ])
-    }
-    
-    private func setupTeamMembersCollectionView() {
-        view.addSubview(teamMembersCollectionView)
-        NSLayoutConstraint.activate([
-            teamMembersCollectionView.topAnchor.constraint(equalTo: teamMembersLabel.bottomAnchor, constant: 10),
-            teamMembersCollectionView.leadingAnchor.constraint(equalTo: teamMembersLabel.leadingAnchor),
-            teamMembersCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
-            teamMembersCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(view.frame.height / 12)),
-        ])
-    }
-    
-    private func setupTeamInformationLabel() {
-        view.addSubview(teamInfoLabel)
-        NSLayoutConstraint.activate([
-            teamInfoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            teamInfoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18)
-        ])
+        
+        let teamMembersViewController = TeamMembersViewController()
+        addChild(teamMembersViewController)
+        teamMembersContainerView.addSubview(teamMembersViewController.view)
+        teamMembersViewController.didMove(toParent: self)
+        teamMembersViewController.view.frame = teamMembersContainerView.frame
     }
 
 }
