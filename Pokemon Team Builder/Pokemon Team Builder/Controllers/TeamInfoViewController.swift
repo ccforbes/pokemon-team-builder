@@ -20,10 +20,18 @@ class TeamInfoViewController: UIViewController {
         return label
     }()
     
-    let teamInfoWrapperView: UIView = {
+    private let teamInfoWrapperView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private let teamNameTextInputWrapper: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 0, bottom: 5, right: 0)
+        return stackView
     }()
     
     private let teamNameTextInput: UITextField = {
@@ -41,6 +49,14 @@ class TeamInfoViewController: UIViewController {
         return textInput
     }()
     
+    private let teamDescriptionTextViewWrapper: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+        return stackView
+    }()
+    
     private lazy var teamDescriptionTextView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +66,14 @@ class TeamInfoViewController: UIViewController {
         textView.delegate = self
         textView.font = UIFont.systemFont(ofSize: 16)
         return textView
+    }()
+    
+    private let gameVersionLogoImageViewWrapper: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        return stackView
     }()
     
     private lazy var gameVersionLogoImageView: UIImageView = {
@@ -112,7 +136,7 @@ class TeamInfoViewController: UIViewController {
     private func setupTeamInfoWrapperView() {
         view.addSubview(teamInfoWrapperView)
         NSLayoutConstraint.activate([
-            teamInfoWrapperView.topAnchor.constraint(equalTo: teamInfoLabel.bottomAnchor, constant: 10),
+            teamInfoWrapperView.topAnchor.constraint(equalTo: teamInfoLabel.bottomAnchor),
             teamInfoWrapperView.leadingAnchor.constraint(equalTo: teamInfoLabel.leadingAnchor),
             teamInfoWrapperView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             teamInfoWrapperView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
@@ -120,29 +144,35 @@ class TeamInfoViewController: UIViewController {
     }
     
     private func setupTeamNameTextField() {
-        teamInfoWrapperView.addSubview(teamNameTextInput)
+        teamNameTextInputWrapper.addArrangedSubview(teamNameTextInput)
+        
+        teamInfoWrapperView.addSubview(teamNameTextInputWrapper)
         NSLayoutConstraint.activate([
-            teamNameTextInput.topAnchor.constraint(equalTo: teamInfoWrapperView.topAnchor),
-            teamNameTextInput.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
-            teamNameTextInput.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
+            teamNameTextInputWrapper.topAnchor.constraint(equalTo: teamInfoWrapperView.topAnchor),
+            teamNameTextInputWrapper.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
+            teamNameTextInputWrapper.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
         ])
     }
     
     private func setupTeamDescriptionTextView() {
-        teamInfoWrapperView.addSubview(teamDescriptionTextView)
+        teamDescriptionTextViewWrapper.addArrangedSubview(teamDescriptionTextView)
+        
+        teamInfoWrapperView.addSubview(teamDescriptionTextViewWrapper)
         NSLayoutConstraint.activate([
-            teamDescriptionTextView.topAnchor.constraint(equalTo: teamNameTextInput.bottomAnchor, constant: 5),
-            teamDescriptionTextView.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
-            teamDescriptionTextView.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
-            teamDescriptionTextView.bottomAnchor.constraint(equalTo: teamInfoWrapperView.bottomAnchor),
+            teamDescriptionTextViewWrapper.topAnchor.constraint(equalTo: teamNameTextInput.bottomAnchor),
+            teamDescriptionTextViewWrapper.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
+            teamDescriptionTextViewWrapper.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
+            teamDescriptionTextViewWrapper.bottomAnchor.constraint(equalTo: teamInfoWrapperView.bottomAnchor),
         ])
     }
     
     private func setupGameVersionLogoImageView() {
-        view.addSubview(gameVersionLogoImageView)
+        gameVersionLogoImageViewWrapper.addArrangedSubview(gameVersionLogoImageView)
+        
+        view.addSubview(gameVersionLogoImageViewWrapper)
         NSLayoutConstraint.activate([
-            gameVersionLogoImageView.leadingAnchor.constraint(equalTo: teamNameTextInput.trailingAnchor, constant: 10),
-            gameVersionLogoImageView.centerYAnchor.constraint(equalTo: teamInfoWrapperView.centerYAnchor),
+            gameVersionLogoImageViewWrapper.leadingAnchor.constraint(equalTo: teamNameTextInput.trailingAnchor),
+            gameVersionLogoImageViewWrapper.centerYAnchor.constraint(equalTo: teamInfoWrapperView.centerYAnchor),
         ])
     }
 
