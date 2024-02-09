@@ -17,20 +17,27 @@ class TeamInfoViewController: UIViewController {
         label.text = "Information"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.layoutMargins = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 0)
         return label
     }()
     
-    private let teamInfoWrapperView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let teamNameTextInputWrapper: UIStackView = {
+    private let contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 0, bottom: 5, right: 0)
+        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 18, bottom: 10, right: 18)
+        return stackView
+    }()
+    
+    private let teamInfoEditSectionStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 5
         return stackView
     }()
     
@@ -46,15 +53,8 @@ class TeamInfoViewController: UIViewController {
                 NSAttributedString.Key.foregroundColor: UIColor.lightGray
             ]
         )
+        textInput.font = UIFont.systemFont(ofSize: 12)
         return textInput
-    }()
-    
-    private let teamDescriptionTextViewWrapper: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-        return stackView
     }()
     
     private lazy var teamDescriptionTextView: UITextView = {
@@ -62,18 +62,22 @@ class TeamInfoViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = .darkGray
         textView.isEditable = true
-        textView.textColor = .white
+        textView.text = "Description"
+        textView.textColor = .lightGray
         textView.delegate = self
-        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.font = UIFont.systemFont(ofSize: 12)
+        textView.layer.cornerRadius = 5
         return textView
     }()
     
-    private let gameVersionLogoImageViewWrapper: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        return stackView
+    private let gameVersionLogoImageViewWrapper: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "Background Color")
+        view.layer.borderColor = UIColor(named: "Stroke")?.cgColor
+        view.layer.borderWidth = 3
+        view.layer.cornerRadius = 20
+        return view
     }()
     
     private lazy var gameVersionLogoImageView: UIImageView = {
@@ -117,6 +121,7 @@ class TeamInfoViewController: UIViewController {
         setupTeamInfoLabel()
         setupTeamInfoEditSection()
         setupGameVersionLogoImageView()
+        setupContentStackView()
     }
     
     private func setupTeamInfoLabel() {
@@ -128,51 +133,34 @@ class TeamInfoViewController: UIViewController {
     }
     
     private func setupTeamInfoEditSection() {
-        setupTeamInfoWrapperView()
-        setupTeamNameTextField()
-        setupTeamDescriptionTextView()
-    }
-    
-    private func setupTeamInfoWrapperView() {
-        view.addSubview(teamInfoWrapperView)
+        teamInfoEditSectionStackView.addArrangedSubview(teamNameTextInput)
+        teamInfoEditSectionStackView.addArrangedSubview(teamDescriptionTextView)
+        view.addSubview(teamInfoEditSectionStackView)
         NSLayoutConstraint.activate([
-            teamInfoWrapperView.topAnchor.constraint(equalTo: teamInfoLabel.bottomAnchor),
-            teamInfoWrapperView.leadingAnchor.constraint(equalTo: teamInfoLabel.leadingAnchor),
-            teamInfoWrapperView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            teamInfoWrapperView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
-        ])
-    }
-    
-    private func setupTeamNameTextField() {
-        teamNameTextInputWrapper.addArrangedSubview(teamNameTextInput)
-        
-        teamInfoWrapperView.addSubview(teamNameTextInputWrapper)
-        NSLayoutConstraint.activate([
-            teamNameTextInputWrapper.topAnchor.constraint(equalTo: teamInfoWrapperView.topAnchor),
-            teamNameTextInputWrapper.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
-            teamNameTextInputWrapper.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
-        ])
-    }
-    
-    private func setupTeamDescriptionTextView() {
-        teamDescriptionTextViewWrapper.addArrangedSubview(teamDescriptionTextView)
-        
-        teamInfoWrapperView.addSubview(teamDescriptionTextViewWrapper)
-        NSLayoutConstraint.activate([
-            teamDescriptionTextViewWrapper.topAnchor.constraint(equalTo: teamNameTextInput.bottomAnchor),
-            teamDescriptionTextViewWrapper.leadingAnchor.constraint(equalTo: teamInfoWrapperView.leadingAnchor),
-            teamDescriptionTextViewWrapper.trailingAnchor.constraint(equalTo: teamInfoWrapperView.trailingAnchor),
-            teamDescriptionTextViewWrapper.bottomAnchor.constraint(equalTo: teamInfoWrapperView.bottomAnchor),
+            teamInfoEditSectionStackView.topAnchor.constraint(equalTo: teamInfoLabel.bottomAnchor),
+            teamInfoEditSectionStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            teamInfoEditSectionStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            teamInfoEditSectionStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
         ])
     }
     
     private func setupGameVersionLogoImageView() {
-        gameVersionLogoImageViewWrapper.addArrangedSubview(gameVersionLogoImageView)
-        
-        view.addSubview(gameVersionLogoImageViewWrapper)
+        gameVersionLogoImageViewWrapper.addSubview(gameVersionLogoImageView)
         NSLayoutConstraint.activate([
-            gameVersionLogoImageViewWrapper.leadingAnchor.constraint(equalTo: teamNameTextInput.trailingAnchor),
-            gameVersionLogoImageViewWrapper.centerYAnchor.constraint(equalTo: teamInfoWrapperView.centerYAnchor),
+            gameVersionLogoImageView.centerXAnchor.constraint(equalTo: gameVersionLogoImageViewWrapper.centerXAnchor),
+            gameVersionLogoImageView.centerYAnchor.constraint(equalTo: gameVersionLogoImageViewWrapper.centerYAnchor)
+        ])
+    }
+    
+    private func setupContentStackView() {
+        contentStackView.addArrangedSubview(teamInfoEditSectionStackView)
+        contentStackView.addArrangedSubview(gameVersionLogoImageViewWrapper)
+        view.addSubview(contentStackView)
+        NSLayoutConstraint.activate([
+            contentStackView.topAnchor.constraint(equalTo: teamInfoLabel.bottomAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            contentStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 
@@ -184,7 +172,7 @@ extension TeamInfoViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.white
         }
     }
     
