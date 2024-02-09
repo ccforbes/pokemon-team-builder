@@ -21,7 +21,7 @@ class TeamMembersViewController: UIViewController {
     
     lazy var teamMembersCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: view.frame.width / 2.3, height: view.frame.height / 12)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
