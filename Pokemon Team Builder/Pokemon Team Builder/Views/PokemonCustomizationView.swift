@@ -141,12 +141,9 @@ class PokemonCustomizationView: UIView {
     }
     
     private func setupMenu() {
-        let actionClosure = { (action: UIAction) in
-            print(action.title)
-        }
         var menuChildren: [UIMenuElement] = []
         for value in values {
-            menuChildren.append(UIAction(title: value, handler: actionClosure))
+            menuChildren.append(UIAction(title: value, handler: { _ in }))
         }
         dropdownMenuButton.menu = UIMenu(options: .displayInline, children: menuChildren)
         dropdownMenuButton.showsMenuAsPrimaryAction = true
