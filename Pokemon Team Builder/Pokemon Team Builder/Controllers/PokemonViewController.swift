@@ -17,6 +17,21 @@ class PokemonViewController: UIViewController {
         return view
     }()
     
+    private let pokemonInfoLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Information"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }()
+    
+    private let pokemonInfoContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     // MARK: - Lifecycle Methods
 
     override func viewDidLoad() {
@@ -24,7 +39,7 @@ class PokemonViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background Color")
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationItem.title = "Pokémon"
+        navigationItem.title = "Choose Pokémon"
         setupUI()
     }
     
@@ -32,6 +47,8 @@ class PokemonViewController: UIViewController {
     
     private func setupUI() {
         setupPokedexEntrySection()
+        setupPokemonInfoLabel()
+        setupPokemonInfoSection()
     }
     
     private func setupPokedexEntrySection() {
@@ -40,7 +57,7 @@ class PokemonViewController: UIViewController {
             pokedexEntryContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             pokedexEntryContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pokedexEntryContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            pokedexEntryContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25)
+            pokedexEntryContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2)
         ])
         
         let pokedexEntryViewController = PokedexEntryViewController()
@@ -48,6 +65,30 @@ class PokemonViewController: UIViewController {
         pokedexEntryContainerView.addSubview(pokedexEntryViewController.view)
         pokedexEntryViewController.didMove(toParent: self)
         pokedexEntryViewController.view.frame = pokedexEntryContainerView.frame
+    }
+    
+    private func setupPokemonInfoLabel() {
+        view.addSubview(pokemonInfoLabel)
+        NSLayoutConstraint.activate([
+            pokemonInfoLabel.topAnchor.constraint(equalTo: pokedexEntryContainerView.bottomAnchor, constant: 20),
+            pokemonInfoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18)
+        ])
+    }
+    
+    private func setupPokemonInfoSection() {
+        view.addSubview(pokemonInfoContainerView)
+        NSLayoutConstraint.activate([
+            pokemonInfoContainerView.topAnchor.constraint(equalTo: pokemonInfoLabel.bottomAnchor),
+            pokemonInfoContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            pokemonInfoContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            pokemonInfoContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2)
+        ])
+        
+        let pokemonInfoViewController = PokemonInfoViewController()
+        addChild(pokemonInfoViewController)
+        pokemonInfoContainerView.addSubview(pokemonInfoViewController.view)
+        pokemonInfoViewController.didMove(toParent: self)
+        pokemonInfoViewController.view.frame = pokemonInfoContainerView.frame
     }
     
 
