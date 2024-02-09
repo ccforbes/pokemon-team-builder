@@ -41,6 +41,7 @@ class PokemonCustomizationView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .darkGray
+        view.layer.cornerRadius = 5
         return view
     }()
     

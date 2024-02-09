@@ -11,6 +11,15 @@ class PokemonViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let pokedexEntryLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Pokédex"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }()
+    
     private let pokedexEntryContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -46,15 +55,24 @@ class PokemonViewController: UIViewController {
     // MARK: - UI Setup
     
     private func setupUI() {
+        setupPokedexEntryLabel()
         setupPokedexEntrySection()
         setupPokemonInfoLabel()
         setupPokemonInfoSection()
     }
     
+    private func setupPokedexEntryLabel() {
+        view.addSubview(pokedexEntryLabel)
+        NSLayoutConstraint.activate([
+            pokedexEntryLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            pokedexEntryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18)
+        ])
+    }
+    
     private func setupPokedexEntrySection() {
         view.addSubview(pokedexEntryContainerView)
         NSLayoutConstraint.activate([
-            pokedexEntryContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pokedexEntryContainerView.topAnchor.constraint(equalTo: pokedexEntryLabel.bottomAnchor, constant: 10),
             pokedexEntryContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pokedexEntryContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pokedexEntryContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2)
