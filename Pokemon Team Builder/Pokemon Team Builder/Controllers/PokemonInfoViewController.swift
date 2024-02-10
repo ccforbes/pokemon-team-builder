@@ -22,8 +22,8 @@ class PokemonInfoViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var nicknameCustomization: PokemonCustomizationView = {
-        let nicknameCustomization = PokemonCustomizationView(
+    private lazy var nicknameCustomization: CustomizationInputView = {
+        let nicknameCustomization = CustomizationInputView(
             title: "Nickname",
             inputMethod: .text,
             values: ["Pikachu"]
@@ -31,8 +31,8 @@ class PokemonInfoViewController: UIViewController {
         return nicknameCustomization
     }()
     
-    private lazy var itemCustomization: PokemonCustomizationView = {
-        let itemCustomization = PokemonCustomizationView(
+    private lazy var itemCustomization: CustomizationInputView = {
+        let itemCustomization = CustomizationInputView(
             title: "Item",
             inputMethod: .dropdown,
             values: ["Light Ball", "Thunder Stone", "Pikashunium Z"]
@@ -40,8 +40,8 @@ class PokemonInfoViewController: UIViewController {
         return itemCustomization
     }()
     
-    private lazy var abilitiesCustomization: PokemonCustomizationView = {
-        let abilitiesCustomization = PokemonCustomizationView(
+    private lazy var abilitiesCustomization: CustomizationInputView = {
+        let abilitiesCustomization = CustomizationInputView(
             title: "Ability",
             inputMethod: .dropdown,
             values: ["Static", "Lightning Rod"]
@@ -49,8 +49,8 @@ class PokemonInfoViewController: UIViewController {
         return abilitiesCustomization
     }()
     
-    private lazy var natureCustomization: PokemonCustomizationView = {
-        let natureCustomization = PokemonCustomizationView(
+    private lazy var natureCustomization: CustomizationInputView = {
+        let natureCustomization = CustomizationInputView(
             title: "Nature",
             inputMethod: .dropdown,
             values: ["Jolly", "Modest"]

@@ -30,7 +30,8 @@ class PokemonMovesViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: "Background Color")
         collectionView.dataSource = self
-        collectionView.register(TeamMembersCollectionViewCell.self, forCellWithReuseIdentifier: TeamMembersCollectionViewCell.id)
+        collectionView.delegate = self
+        collectionView.register(PreviewCollectionViewCell.self, forCellWithReuseIdentifier: PreviewCollectionViewCell.id)
         return collectionView
     }()
     
@@ -90,12 +91,18 @@ extension PokemonMovesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // TODO: - Refactor cell to use specifically for moves
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamMembersCollectionViewCell.id, for: indexPath) as?
-                TeamMembersCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PreviewCollectionViewCell.id, for: indexPath) as?
+                PreviewCollectionViewCell else {
             return UICollectionViewCell()
         }
         return cell
     }
     
     
+}
+
+extension PokemonMovesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(MoveDetailsViewController(), animated: true)
+    }
 }

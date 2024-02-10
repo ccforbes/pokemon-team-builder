@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokedexSectionView: UIView {
+class DescriptorView: UIView {
     
     // MARK: - Properties
     
@@ -16,14 +16,14 @@ class PokedexSectionView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         return stackView
     }()
     
-    private let label: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 11)
+        label.font = UIFont.systemFont(ofSize: fontSize)
         label.textColor = .white
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -33,12 +33,16 @@ class PokedexSectionView: UIView {
     
     private let title: String
     private let value: String
+    private let includesTitle: Bool
+    private let fontSize: CGFloat
     
     // MARK: - Initializers
     
-    init(title: String, value: String, backgroundColor: UIColor) {
+    init(title: String, value: String, fontSize: CGFloat, includesTitle: Bool, backgroundColor: UIColor) {
         self.title = title
         self.value = value
+        self.fontSize = fontSize
+        self.includesTitle = includesTitle
         super.init(frame: .zero)
         self.backgroundColor = backgroundColor
         setupUI()
@@ -51,8 +55,9 @@ class PokedexSectionView: UIView {
     // MARK: - UI Setup
     
     private func setupUI() {
-        label.text = "\(title): \(value)"
-        if (title == "Entry") {
+        if (includesTitle) {
+            label.text = "\(title): \(value)"
+        } else {
             label.text = value
         }
         containerStackView.addArrangedSubview(label)

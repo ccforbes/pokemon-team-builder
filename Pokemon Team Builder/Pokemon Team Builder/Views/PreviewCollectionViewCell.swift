@@ -7,11 +7,11 @@
 
 import UIKit
 
-class TeamMembersCollectionViewCell: UICollectionViewCell {
+class PreviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    static let id = "TeamMembersCollectionViewCell"
+    static let id = "PreviewCollectionViewCell"
     
     let containerView: UIView = {
         let view = UIView()

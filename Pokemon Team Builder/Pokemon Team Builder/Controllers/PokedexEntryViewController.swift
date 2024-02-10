@@ -47,47 +47,58 @@ class PokedexEntryViewController: UIViewController {
     }()
     
     
-    private lazy var typeView: PokedexSectionView = {
-        let typeView = PokedexSectionView(
+    private lazy var typeView: DescriptorView = {
+        let typeView = DescriptorView(
             title: "Type",
             value: "Electric",
+            fontSize: 11,
+            includesTitle: true,
             backgroundColor: .darkGray
         )
         return typeView
     }()
     
-    private lazy var categoryView: PokedexSectionView = {
-        let categoryView = PokedexSectionView(
+    private lazy var categoryView: DescriptorView = {
+        let categoryView = DescriptorView(
             title: "Category",
             value: "Mouse Pokémon",
+            fontSize: 11,
+            includesTitle: true,
             backgroundColor: UIColor(named: "Background Color")!
         )
         return categoryView
     }()
     
-    private lazy var heightView: PokedexSectionView = {
-        let heightView = PokedexSectionView(
+    private lazy var heightView: DescriptorView = {
+        let heightView = DescriptorView(
             title: "Height",
             value: "1'04",
+            fontSize: 11,
+            includesTitle: true,
             backgroundColor: .darkGray
         )
         return heightView
     }()
     
-    private lazy var weightView: PokedexSectionView = {
-        let weightView = PokedexSectionView(
+    private lazy var weightView: DescriptorView = {
+        let weightView = DescriptorView(
             title: "Weight",
             value: "13.2 lbs",
+            fontSize: 11,
+            includesTitle: true,
             backgroundColor: UIColor(named: "Background Color")!
         )
         return weightView
     }()
     
-    private lazy var entryView: PokedexSectionView = {
-        let entryView = PokedexSectionView(
+    private lazy var entryView: DescriptorView = {
+        let entryView = DescriptorView(
             title: "Entry",
             value: "Possesses cheek sacs in which it stores electricity. This clever forest-dweller roasts tough berries with an electric shock before consuming them.",
-            backgroundColor: .darkGray)
+            fontSize: 11,
+            includesTitle: false,
+            backgroundColor: .darkGray
+        )
         return entryView
     }()
     

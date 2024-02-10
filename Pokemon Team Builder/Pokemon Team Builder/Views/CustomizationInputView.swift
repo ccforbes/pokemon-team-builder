@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonCustomizationView: UIView {
+class CustomizationInputView: UIView {
     
     // MARK: - Properties
     
@@ -161,7 +161,7 @@ class PokemonCustomizationView: UIView {
 
 }
 
-extension PokemonCustomizationView: UITextFieldDelegate {
+extension CustomizationInputView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let maxLength = 12 // Nickname char limit
         let currentString = (textField.text ?? "") as NSString

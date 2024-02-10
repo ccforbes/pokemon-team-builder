@@ -63,7 +63,7 @@ class PokemonViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background Color")
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationItem.title = "Choose Pokémon"
+        navigationItem.title = "Pokémon"
         setupUI()
     }
     

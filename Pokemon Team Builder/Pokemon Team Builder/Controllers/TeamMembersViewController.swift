@@ -29,7 +29,7 @@ class TeamMembersViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(TeamMembersCollectionViewCell.self, forCellWithReuseIdentifier: TeamMembersCollectionViewCell.id)
+        collectionView.register(PreviewCollectionViewCell.self, forCellWithReuseIdentifier: PreviewCollectionViewCell.id)
         return collectionView
     }()
     
@@ -96,8 +96,8 @@ extension TeamMembersViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamMembersCollectionViewCell.id, for: indexPath) as?
-                TeamMembersCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PreviewCollectionViewCell.id, for: indexPath) as?
+                PreviewCollectionViewCell else {
             return UICollectionViewCell()
         }
         return cell
