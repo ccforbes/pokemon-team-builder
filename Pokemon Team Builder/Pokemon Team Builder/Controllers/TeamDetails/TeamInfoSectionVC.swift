@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeamInfoViewController: UIViewController {
+class TeamInfoSectionVC: UIViewController {
     
     // MARK: - Properties
     
@@ -168,7 +168,7 @@ class TeamInfoViewController: UIViewController {
 
 // MARK: - TextView Delegate Extension
 
-extension TeamInfoViewController: UITextViewDelegate {
+extension TeamInfoSectionVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil

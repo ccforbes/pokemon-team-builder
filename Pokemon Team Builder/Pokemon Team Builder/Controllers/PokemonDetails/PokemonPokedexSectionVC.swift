@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokedexEntryViewController: UIViewController {
+class PokemonPokedexSectionVC: UIViewController {
     
     // MARK: - Properties
     

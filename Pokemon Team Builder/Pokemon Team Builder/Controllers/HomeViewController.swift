@@ -129,7 +129,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(TeamViewController(), animated: true)
+        navigationController?.pushViewController(TeamDetailsVC(), animated: true)
     }
 }
 

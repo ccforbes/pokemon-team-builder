@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MoveDetailsViewController: UIViewController {
+class MoveDetailsVC: UIViewController {
     
     // MARK: - Properties
     

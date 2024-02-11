@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonViewController: UIViewController {
+class PokemonDetailsVC: UIViewController {
     
     // MARK: - Properties
     
@@ -95,7 +95,7 @@ class PokemonViewController: UIViewController {
             pokedexEntryContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2)
         ])
         
-        let pokedexEntryViewController = PokedexEntryViewController()
+        let pokedexEntryViewController = PokemonPokedexSectionVC()
         addChild(pokedexEntryViewController)
         pokedexEntryContainerView.addSubview(pokedexEntryViewController.view)
         pokedexEntryViewController.didMove(toParent: self)
@@ -119,7 +119,7 @@ class PokemonViewController: UIViewController {
             pokemonInfoContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2)
         ])
         
-        let pokemonInfoViewController = PokemonInfoViewController()
+        let pokemonInfoViewController = PokemonInfoSectionVC()
         addChild(pokemonInfoViewController)
         pokemonInfoContainerView.addSubview(pokemonInfoViewController.view)
         pokemonInfoViewController.didMove(toParent: self)
@@ -143,7 +143,7 @@ class PokemonViewController: UIViewController {
             pokemonMovesContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2)
         ])
         
-        let pokemonMovesViewController = PokemonMovesViewController()
+        let pokemonMovesViewController = PokemonMovesSectionVC()
         addChild(pokemonMovesViewController)
         pokemonMovesContainerView.addSubview(pokemonMovesViewController.view)
         pokemonMovesViewController.didMove(toParent: self)

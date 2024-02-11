@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeamViewController: UIViewController {
+class TeamDetailsVC: UIViewController {
     
     // MARK: - Properties
     
@@ -93,7 +93,7 @@ class TeamViewController: UIViewController {
             teamInfoContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25)
         ])
         
-        let teamInfoViewController = TeamInfoViewController()
+        let teamInfoViewController = TeamInfoSectionVC()
         addChild(teamInfoViewController)
         teamInfoContainerView.addSubview(teamInfoViewController.view)
         teamInfoViewController.didMove(toParent: self)
@@ -109,7 +109,7 @@ class TeamViewController: UIViewController {
             teamMembersContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.33)
         ])
         
-        let teamMembersViewController = TeamMembersViewController()
+        let teamMembersViewController = TeamMembersSectionVC()
         addChild(teamMembersViewController)
         teamMembersContainerView.addSubview(teamMembersViewController.view)
         teamMembersViewController.didMove(toParent: self)
@@ -120,7 +120,7 @@ class TeamViewController: UIViewController {
 
 // MARK: - DataSource Extension
 
-extension TeamViewController: UICollectionViewDataSource {
+extension TeamDetailsVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         6
     }
@@ -136,7 +136,7 @@ extension TeamViewController: UICollectionViewDataSource {
     
 }
 
-extension TeamViewController: UITextViewDelegate {
+extension TeamDetailsVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil

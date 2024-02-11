@@ -1,34 +1,32 @@
 //
-//  PokemomMovesViewController.swift
+//  TeamMembersViewController.swift
 //  Pokemon Team Builder
 //
-//  Created by Chris Forbes on 2/9/24.
+//  Created by Chris Forbes on 2/7/24.
 //
 
 import UIKit
 
-class PokemonMovesViewController: UIViewController {
+class TeamMembersSectionVC: UIViewController {
     
     // MARK: - Properties
-    
-    private let contentStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 18, bottom: 0, right: 18)
-        return stackView
+    private let teamMembersLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Members"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
     }()
     
-    private lazy var moveCollectionView: UICollectionView = {
+    lazy var teamMembersCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: view.frame.width / 2.3, height: view.frame.height / 12)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: "Background Color")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(PreviewCollectionViewCell.self, forCellWithReuseIdentifier: PreviewCollectionViewCell.id)
@@ -44,29 +42,12 @@ class PokemonMovesViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Lifecycle Methods
 
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-    }
-    
-    // MARK: - UI Setup
-    
-    private func setupUI() {
-        setupMoveCollectionView()
-    }
-    
-    private func setupMoveCollectionView() {
-        contentStackView.addArrangedSubview(moveCollectionView)
-        view.addSubview(contentStackView)
-        NSLayoutConstraint.activate([
-            contentStackView.topAnchor.constraint(equalTo: view.topAnchor),
-            contentStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contentStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            contentStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
     }
     
 
@@ -79,18 +60,42 @@ class PokemonMovesViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - UI Setup
+    
+    private func setupUI() {
+        setupTeamMembersLabel()
+        setupTeamMembersCollectionView()
+    }
+    
+    private func setupTeamMembersLabel() {
+        view.addSubview(teamMembersLabel)
+        NSLayoutConstraint.activate([
+            teamMembersLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            teamMembersLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
+        ])
+    }
+    
+    private func setupTeamMembersCollectionView() {
+        view.addSubview(teamMembersCollectionView)
+        NSLayoutConstraint.activate([
+            teamMembersCollectionView.topAnchor.constraint(equalTo: teamMembersLabel.bottomAnchor, constant: 10),
+            teamMembersCollectionView.leadingAnchor.constraint(equalTo: teamMembersLabel.leadingAnchor),
+            teamMembersCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
+            teamMembersCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+    }
 
 }
 
 // MARK: - DataSource Extension
 
-extension PokemonMovesViewController: UICollectionViewDataSource {
+extension TeamMembersSectionVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
+        6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // TODO: - Refactor cell to use specifically for moves
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PreviewCollectionViewCell.id, for: indexPath) as?
                 PreviewCollectionViewCell else {
             return UICollectionViewCell()
@@ -101,8 +106,10 @@ extension PokemonMovesViewController: UICollectionViewDataSource {
     
 }
 
-extension PokemonMovesViewController: UICollectionViewDelegate {
+// MARK: - Delegate Extension
+
+extension TeamMembersSectionVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(MoveDetailsViewController(), animated: true)
+        navigationController?.pushViewController(PokemonDetailsVC(), animated: true)
     }
 }
