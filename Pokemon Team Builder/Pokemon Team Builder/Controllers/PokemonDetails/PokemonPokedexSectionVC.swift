@@ -112,6 +112,8 @@ class PokemonPokedexSectionVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.pokemonImageContainerViewTapped))
+        pokemonImageContainerView.addGestureRecognizer(gesture)
         setupUI()
     }
     
@@ -173,6 +175,7 @@ class PokemonPokedexSectionVC: UIViewController {
 
     /*
     // MARK: - Navigation
+     
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -180,5 +183,9 @@ class PokemonPokedexSectionVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @objc private func pokemonImageContainerViewTapped(_ sender: UITapGestureRecognizer) {
+        navigationController?.pushViewController(PokedexVC(), animated: true)
+    }
 
 }
