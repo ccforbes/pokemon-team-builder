@@ -92,6 +92,8 @@ class TeamInfoSectionVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.gameVersionLogoContainerViewTapped))
+        gameVersionLogoImageViewWrapper.addGestureRecognizer(gesture)
         setupUI()
     }
     
@@ -162,6 +164,12 @@ class TeamInfoSectionVC: UIViewController {
             contentStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             contentStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    // MARK: - Navigation
+    
+    @objc private func gameVersionLogoContainerViewTapped(_ sender: UITapGestureRecognizer) {
+        navigationController?.pushViewController(GameVC(), animated: true)
     }
 
 }

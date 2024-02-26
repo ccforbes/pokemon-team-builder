@@ -35,6 +35,7 @@
 		D3AC88F12B76E8FD0008686F /* MoveDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC88F02B76E8FD0008686F /* MoveDetailsVC.swift */; };
 		D3AC88F62B872B340008686F /* PokedexVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC88F52B872B330008686F /* PokedexVC.swift */; };
 		D3AC88F92B87FBA90008686F /* PokedexTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC88F82B87FBA90008686F /* PokedexTableViewCell.swift */; };
+		D3AC88FB2B8D54BB0008686F /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC88FA2B8D54BB0008686F /* GameVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		D3AC88F02B76E8FD0008686F /* MoveDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveDetailsVC.swift; sourceTree = "<group>"; };
 		D3AC88F52B872B330008686F /* PokedexVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexVC.swift; sourceTree = "<group>"; };
 		D3AC88F82B87FBA90008686F /* PokedexTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexTableViewCell.swift; sourceTree = "<group>"; };
+		D3AC88FA2B8D54BB0008686F /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				D3AC88F32B7957DF0008686F /* PokemonDetails */,
 				D3AC88F42B7957F00008686F /* MoveDetails */,
 				D3AC88F72B87FB220008686F /* Pokedex */,
+				D3AC88FA2B8D54BB0008686F /* GameVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				D356FB4E2B5B5FAC003ACA2D /* HomeViewController.swift in Sources */,
 				D3AC88ED2B75E8BE0008686F /* CustomizationInputView.swift in Sources */,
 				D36C856D2B6EA5F800924BE8 /* TeamDetailsVC.swift in Sources */,
+				D3AC88FB2B8D54BB0008686F /* GameVC.swift in Sources */,
 				D356FB622B5B645A003ACA2D /* HomeViewModel.swift in Sources */,
 				D356FB4A2B5B5FAC003ACA2D /* AppDelegate.swift in Sources */,
 				D3AC88E52B749B850008686F /* PokemonDetailsVC.swift in Sources */,
