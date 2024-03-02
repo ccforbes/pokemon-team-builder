@@ -50,7 +50,7 @@ class TeamsCollectionViewCell: UICollectionViewCell {
         collectionView.backgroundColor = UIColor(named: "Background Color")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
-        collectionView.register(PokemonTeamCollectionViewCell.self, forCellWithReuseIdentifier: PokemonTeamCollectionViewCell.id)
+        collectionView.register(TeamPreviewCollectionViewCell.self, forCellWithReuseIdentifier: TeamPreviewCollectionViewCell.id)
         return collectionView
     }()
     
@@ -125,8 +125,8 @@ extension TeamsCollectionViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonTeamCollectionViewCell.id, for: indexPath)
-                as? PokemonTeamCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamPreviewCollectionViewCell.id, for: indexPath)
+                as? TeamPreviewCollectionViewCell else {
             return UICollectionViewCell()
         }
         return cell

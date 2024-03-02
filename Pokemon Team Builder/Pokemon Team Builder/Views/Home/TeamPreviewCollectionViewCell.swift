@@ -7,10 +7,10 @@
 
 import UIKit
 
-class PokemonTeamCollectionViewCell: UICollectionViewCell {
+class TeamPreviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    static let id = "PokemonTeamCollectionViewCell"
+    static let id = "TeamPreviewCollectionViewCell"
     
     lazy var teamMemberImageView: UIImageView = {
         let image = UIImage(named: "Pikachu")
